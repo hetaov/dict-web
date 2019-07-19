@@ -1,0 +1,81 @@
+{
+  "private": true,
+  "scripts": {
+    "lint": "eslint src tools",
+    "flow-typed": "flow-typed install --flowVersion=0.94.0",
+    "relay-compiler": "relay-compiler --watchman false --src src --exclude 'data/**' --schema src/data/schema.graphql",
+    "start": "npm run relay-compiler && babel-node src/server",
+    "update-schema": "babel-node tools/updateSchema.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "npm run update-schema",
+      "git add src/data/schema.*"
+    ]
+  },
+  "prettier": {
+    "printWidth": 79,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "dependencies": {
+    "@4c/babel-preset": "^5.2.0",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "@babel/runtime": "^7.4.5",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-relay": "^5.0.0",
+    "babel-plugin-transform-typescript-metadata": "^0.2.2",
+    "classnames": "^2.2.6",
+    "copy-webpack-plugin": "^5.0.3",
+    "eslint": "^5.16.0",
+    "eslint-config-4catalyzer-react": "^0.9.3",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.13.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.8.0",
+    "farce": "^0.2.8",
+    "flow-bin": "^0.94.0",
+    "flow-typed": "^2.5.1",
+    "found": "^0.4.0-alpha.17",
+    "found-relay": "^0.4.0-alpha.9",
+    "graphql": "^14.3.1",
+    "graphql-relay": "^0.6.0",
+    "husky": "^2.4.1",
+    "isomorphic-fetch": "^2.2.1",
+    "keycode": "^2.2.0",
+    "lint-staged": "^8.2.0",
+    "mongodb": "^3.3.0-beta2",
+    "mongoose": "^5.6.5",
+    "prettier": "^1.18.2",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-relay": "^5.0.0",
+    "react-relay-network-modern": "^2.6.0",
+    "react-relay-network-modern-ssr": "1.2.2",
+    "regenerator-runtime": "^0.13.2",
+    "relay-compiler": "^5.0.0",
+    "relay-runtime": "^5.0.0",
+    "serialize-javascript": "^1.7.0",
+    "todomvc-app-css": "^2.2.0",
+    "todomvc-common": "^1.0.5",
+    "typeorm": "^0.2.18",
+    "webpack": "^4.34.0",
+    "webpack-dev-middleware": "^3.7.0"
+  }
+}

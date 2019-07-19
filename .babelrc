@@ -1,0 +1,21 @@
+{
+  "presets": [
+    ["@4c", {
+      "target": "node",
+      "useBuiltIns": "usage"
+    }],
+    "@babel/preset-react", "@babel/preset-env", "@babel/preset-flow", "@babel/preset-typescript"
+  ],
+  "plugins": [
+    "relay",
+    "@babel/plugin-transform-runtime",
+    "babel-plugin-transform-typescript-metadata",
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true,
+      }
+    ],
+    ["@babel/plugin-proposal-class-properties", {"loose": true}],
+  ]
+}
