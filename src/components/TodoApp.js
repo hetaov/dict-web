@@ -26,7 +26,7 @@ class TodoApp extends React.Component {
       <div data-framework="relay">
         <section className="todoapp">
           <header className="header">
-            <h1>todos</h1>
+            <h1>生词本</h1>
             <TodoTextInput
               className="new-todo"
               placeholder="What needs to be done?"
@@ -41,14 +41,11 @@ class TodoApp extends React.Component {
         </section>
 
         <footer className="info">
-          <p>Double-click to edit a todo</p>
+          <p>双击编辑</p>
           <p>
-            Adapted by <a href="http://fashionablenonsense.com/">@jimmy_jia</a>{' '}
+            Created by <a href="http://fashionablenonsense.com/">tao</a>{' '}
             from work by the{' '}
-            <a href="https://facebook.github.io/relay/">Relay team</a>
-          </p>
-          <p>
-            Part of <a href="http://todomvc.com">TodoMVC</a>
+            <a href="https://facebook.github.io/relay/">Dict team</a>
           </p>
         </footer>
       </div>

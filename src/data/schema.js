@@ -26,6 +26,7 @@ import {
   User,
   addTodo,
   changeTodoStatus,
+  getTodoBy,
   getTodo,
   getTodos,
   getUser,
@@ -161,12 +162,13 @@ const GraphQLChangeTodoStatusMutation = mutationWithClientMutationId({
     },
     todo: {
       type: GraphQLTodo,
-      resolve: ({ todoId }) => getTodo(todoId),
+      resolve: async ({ todoId }) => await getTodo(todoId),
     },
   },
-  mutateAndGetPayload: ({ id, complete }) => {
+  mutateAndGetPayload: async ({ id, complete }) => {
     const { id: todoId } = fromGlobalId(id);
-    changeTodoStatus(todoId, complete);
+    await changeTodoStatus(todoId, complete);
+    console.log(todoId, '------------->, complete', complete);
     return { todoId };
   },
 });
@@ -183,11 +185,11 @@ const GraphQLMarkAllTodosMutation = mutationWithClientMutationId({
     },
     changedTodos: {
       type: new GraphQLList(GraphQLTodo),
-      resolve: ({ changedTodoIds }) => changedTodoIds.map(getTodo),
+      resolve: async ({ changedTodoIds }) => await getTodoBy(changedTodoIds),
     },
   },
-  mutateAndGetPayload: ({ complete }) => {
-    const changedTodoIds = markAllTodos(complete);
+  mutateAndGetPayload: async ({ complete }) => {
+    const changedTodoIds = await markAllTodos(complete);
     return { changedTodoIds };
   },
 });
@@ -204,8 +206,8 @@ const GraphQLRemoveCompletedTodosMutation = mutationWithClientMutationId({
       resolve: ({ deletedIds }) => deletedIds,
     },
   },
-  mutateAndGetPayload: () => {
-    const deletedTodoIds = removeCompletedTodos();
+  mutateAndGetPayload: async () => {
+    const deletedTodoIds = await removeCompletedTodos();
     const deletedIds = deletedTodoIds.map(toGlobalId.bind(null, 'Todo'));
     return { deletedIds };
   },
@@ -226,9 +228,9 @@ const GraphQLRemoveTodoMutation = mutationWithClientMutationId({
       resolve: ({ id }) => id,
     },
   },
-  mutateAndGetPayload: ({ id }) => {
+  mutateAndGetPayload: async ({ id }) => {
     const { id: todoId } = fromGlobalId(id);
-    removeTodo(todoId);
+    await removeTodo(todoId);
     return { id };
   },
 });
@@ -242,12 +244,12 @@ const GraphQLRenameTodoMutation = mutationWithClientMutationId({
   outputFields: {
     todo: {
       type: GraphQLTodo,
-      resolve: ({ todoId }) => getTodo(todoId),
+      resolve: async ({ todoId }) => await getTodo(todoId),
     },
   },
-  mutateAndGetPayload: ({ id, name }) => {
+  mutateAndGetPayload: async ({ id, name }) => {
     const { id: todoId } = fromGlobalId(id);
-    renameTodo(todoId, name);
+    await renameTodo(todoId, name);
     return { todoId };
   },
 });

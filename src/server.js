@@ -106,8 +106,8 @@ app.use(async (req, res) => {
 <head>
   <meta charset="utf-8">
   <title>Relay • TodoMVC</title>
-  <link rel="stylesheet" href="base.css">
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/index.css">
 </head>
 
 <body>

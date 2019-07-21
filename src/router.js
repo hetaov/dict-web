@@ -7,6 +7,7 @@ import { graphql } from 'react-relay';
 
 import TodoApp from './components/TodoApp';
 import TodoList from './components/TodoList';
+import TodoDetail from './components/TodoDetail'
 
 export const historyMiddlewares = [queryMiddleware];
 
@@ -36,6 +37,7 @@ export const routeConfig = makeRouteConfig(
       prepareVariables={params => ({ ...params, status: 'any' })}
     />
     <Route path=":status" Component={TodoList} query={TodoListQuery} />
+    <Route path="/detail/:id" Component={TodoDetail}/>
   </Route>,
 );
 
