@@ -74,7 +74,7 @@
     "serialize-javascript": "^1.7.0",
     "todomvc-app-css": "^2.2.0",
     "todomvc-common": "^1.0.5",
-    "typeorm": "^0.2.18",
+    "typeorm": "^0.2.25",
     "webpack": "^4.34.0",
     "webpack-dev-middleware": "^3.7.0"
   }
